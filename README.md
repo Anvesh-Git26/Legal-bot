@@ -1,157 +1,206 @@
-🧠 GenAI-Powered Legal Contract Analysis Assistant (India)
+Here is a professional, structured, and visually appealing `README.md` for your GitHub repository. You can copy and paste this directly.
 
-A production-grade GenAI legal assistant designed to help Indian Small and Medium Enterprises (SMEs) understand complex contracts, identify legal risks, and receive actionable, plain-language advice — with privacy-first, offline-safe architecture.
+---
 
-Built for hackathons + real-world deployment
-No external legal APIs • Full audit trail • Hindi + English support
+# ⚖️ GenAI-Powered Legal Contract Analysis Assistant (India)
 
-🚀 Key Features
-📄 Contract Understanding
+**A production-grade GenAI legal assistant designed to help Indian Small and Medium Enterprises (SMEs) understand complex contracts, identify legal risks, and receive actionable, plain-language advice.**
 
-Supports Employment Agreements, Vendor Contracts, Lease Agreements, Partnership Deeds, Service Contracts
+> **Privacy-First & Offline-Safe:** Built with a "local-first" architecture. No external legal APIs are required. Full audit trails included.
 
-Handles PDF (text-based), DOC/DOCX, and TXT files
+---
 
-Clause-by-clause extraction and explanation
+## 🚀 Overview
 
-⚖️ Legal Risk Detection
+Small businesses in India often sign contracts they don't fully understand due to language barriers and complex legalese. This tool bridges that gap. It ingests contracts (PDF, DOCX, TXT), analyzes them against Indian legal contexts, scores risks, and explains clauses in plain English or Hindi.
 
-Clause-level and contract-level risk scoring
+**Key Differentiator:** The system works **100% offline** using rule-based logic and NLP. It can optionally be supercharged with LLMs (Claude 3 / GPT-4) for deeper reasoning if API keys are provided.
 
-Identifies:
+---
 
-Penalty clauses
+## ✨ Key Features
 
-Indemnities
+### 📄 Contract Understanding
 
-Unilateral termination
+* **Format Support:** PDF (text-based), DOC/DOCX, and TXT.
+* **Doc Types:** Employment Agreements, Vendor Contracts, Leases, Partnership Deeds, Service Contracts.
+* **Granular Analysis:** Extracts and explains content clause-by-clause.
 
-Arbitration & jurisdiction risks
+### ⚖️ Legal Risk Detection
 
-Auto-renewal & lock-in periods
+* **Scoring:** Generates a Contract Risk Score (Low/Medium/High).
+* **Red Flags:** Identifies penalty clauses, one-sided indemnities, unilateral termination, and strict lock-in periods.
+* **Jurisdiction:** Flags arbitration and jurisdiction risks specific to Indian law.
 
-Non-compete & IP transfer risks
+### 🌐 Multilingual Intelligence (India-Centric)
 
-SME-focused mitigation recommendations
+* **Bilingual Support:** Native support for **Hindi** and **English**.
+* **Hinglish:** Handles mixed-language contracts efficiently.
+* **Normalization:** Preserves strict legal terms while simplifying the surrounding explanation.
 
-🌐 Multilingual Intelligence
+### 🤖 GenAI Reasoning (Hybrid Architecture)
 
-Native Hindi + English support
+* **Rule-Based Core:** Works out-of-the-box without internet.
+* **LLM Boost (Optional):** Plug in OpenAI or Anthropic keys for advanced reasoning and summarization.
+* **Cost Control:** Caches responses to minimize API costs.
 
-Automatic Hindi → English normalization
+### 🧾 SME-Friendly Templates
 
-Legal term preservation during translation
+* Access ready-to-use, balanced contract templates aligned with Indian law.
+* Variable-driven customization for quick drafting.
 
-Handles mixed Hindi-English (Hinglish) contracts
+---
 
-🤖 GenAI Reasoning (Optional)
+## 🏗️ System Architecture
 
-Uses Claude 3 / GPT-4 for legal reasoning only
+The application follows a modular architecture separating the UI, processing logic, and risk engines.
 
-Rule-based fallback when LLM is unavailable
+```mermaid
+graph TD
+    A[Streamlit UI] --> B(Orchestrator Layer)
+    B --> C{Document Processor}
+    C -->|PDF/DOCX/TXT| D[Clause Extractor]
+    C -->|NLP| E[Entity Extractor]
+    D --> F[Risk Engine]
+    E --> F
+    F --> G{LLM Reasoner}
+    G -.->|Optional| H[GPT-4 / Claude 3]
+    G -->|Fallback| I[Rule-Based Logic]
+    F --> J[Report Generator]
+    J --> K[PDF Report & Audit Logs]
 
-API-safe, cost-controlled, cached responses
+```
 
-🧾 SME-Friendly Templates
+---
 
-Ready-to-use Indian law-aligned contract templates
+## 📂 Project Structure
 
-Variable-driven customization
+```bash
+├── streamlit_app.py          # Main UI entry point
+├── orchestrator.py           # System coordinator connecting all modules
+├── document_processor.py     # File ingestion (PDF/DOCX/TXT)
+├── language_handler.py       # Hindi-English normalization & translation
+├── contract_classifier.py    # Detects agreement type (e.g., Lease vs Vendor)
+├── clause_extractor.py       # Regex & NLP based clause parsing
+├── entity_extractor.py       # Extracts Parties, Dates, Amounts, IP terms
+├── risk_engine.py            # Core logic for scoring and red-flagging
+├── llm_reasoner.py           # Optional wrapper for Claude/GPT
+├── template_engine.py        # Generates contracts from templates
+├── pdf_report_generator.py   # Creates watermarked downloadable PDFs
+├── audit_logger.py           # JSON-based security logging
+├── templates/                # Folder containing .txt/.json contract templates
+├── cache/                    # Local storage for API responses & vectors
+├── requirements.txt          # Python dependencies
+└── README.md                 # Documentation
 
-Balanced clauses for SME protection
+```
 
-📑 Reports & Audit
+---
 
-Professional PDF export with watermark
+## ⚙️ Installation & Setup
 
-JSON-based audit logs (who, what, when)
+### Prerequisites
 
-Confidential, local-only data processing
+* Python 3.8 or higher
+* Git
 
-🏗️ System Architecture
-┌───────────────────────────────┐
-│        Streamlit UI           │
-├───────────────────────────────┤
-│     Orchestrator Layer        │
-├──────────────┬───────────────┤
-│ Document     │ Language       │
-│ Processor    │ Handler        │
-├──────────────┼───────────────┤
-│ Clause       │ Entity         │
-│ Extractor   │ Extractor      │
-├──────────────┼───────────────┤
-│ Risk Engine │ LLM Reasoner   │
-├──────────────┴───────────────┤
-│ Templates | PDF | Audit Logs │
-└───────────────────────────────┘
+### 1. Clone the Repository
 
-📂 Project Structure
-├── streamlit_app.py          # UI
-├── orchestrator.py           # System coordinator
-├── document_processor.py     # PDF / DOCX / TXT ingestion
-├── language_handler.py       # Hindi-English normalization
-├── contract_classifier.py    # Contract type detection
-├── clause_extractor.py       # Clause & sub-clause parsing
-├── entity_extractor.py       # Parties, amounts, dates, IP, etc.
-├── risk_engine.py            # Legal risk scoring engine
-├── llm_reasoner.py           # Claude / GPT reasoning (optional)
-├── template_engine.py        # SME contract templates
-├── pdf_report_generator.py  # Watermarked PDF reports
-├── audit_logger.py           # JSON-based audit logs
-├── templates/               # Contract templates
-├── cache/                   # Translation, risk, LLM caches
-├── requirements.txt
-└── README.md
-
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+```bash
 git clone https://github.com/your-username/legal-genai-assistant.git
 cd legal-genai-assistant
 
-2️⃣ Install Dependencies
+```
+
+### 2. Create a Virtual Environment (Recommended)
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Mac/Linux
+source venv/bin/activate
+
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
 
-3️⃣ Install SpaCy Model
+```
+
+### 4. Install NLP Models
+
+The system uses SpaCy for entity recognition.
+
+```bash
 python -m spacy download en_core_web_sm
 
-4️⃣ (Optional) Set LLM API Keys
-export OPENAI_API_KEY=your_key_here
-export ANTHROPIC_API_KEY=your_key_here
+```
 
+### 5. (Optional) Configure LLM Keys
 
-⚠️ LLMs are optional. The system works fully without them.
+If you want to use the GenAI features, export your keys. If skipped, the system uses rule-based logic.
 
-5️⃣ Run the App
+**Mac/Linux:**
+
+```bash
+export OPENAI_API_KEY="sk-..."
+export ANTHROPIC_API_KEY="sk-ant-..."
+
+```
+
+**Windows (PowerShell):**
+
+```powershell
+$env:OPENAI_API_KEY="sk-..."
+$env:ANTHROPIC_API_KEY="sk-ant-..."
+
+```
+
+### 6. Run the Application
+
+```bash
 streamlit run streamlit_app.py
 
-🧪 Supported Inputs
-Format	Supported
-PDF (text-based)	✅
-DOC / DOCX	✅
-TXT	✅
-Scanned PDF (OCR)	❌ (out of scope)
-📤 Outputs
+```
 
-📊 Contract risk score (Low / Medium / High)
+---
 
-📌 Highlighted high-risk clauses
+## 🧪 Supported Inputs
 
-📝 Plain-English explanations
+| Format | Supported | Notes |
+| --- | --- | --- |
+| **PDF (Text-Based)** | ✅ | Native digital PDFs work best. |
+| **DOC / DOCX** | ✅ | Standard Word documents. |
+| **TXT** | ✅ | Raw text files. |
+| **Scanned PDF (Images)** | ❌ | OCR is currently out of scope. |
 
-🔁 Renegotiation suggestions
+---
 
-📄 Downloadable PDF report
+## 🔐 Security & Privacy
 
-🧾 JSON audit trail
+This tool is designed for sensitive legal data:
 
-🔐 Security & Privacy
+1. **Local Processing:** Files are processed in RAM and temporary local storage. They are **never** uploaded to a cloud database.
+2. **Audit Trail:** Every analysis generates a JSON audit log recording the timestamp, file hash, and risk score (but not the file content) for accountability.
+3. **No Training:** Your data is not used to train any models.
 
-100% local file processing
+---
 
-No document storage in cloud
+## 🔮 Roadmap
 
-No external legal databases
+* [ ] Add OCR support (Tesseract) for scanned documents.
+* [ ] Integration with DigiLocker (India).
+* [ ] Voice-based Q&A for accessibility in rural India.
 
-Optional auto-cleanup after processing
+---
 
-Audit-ready by design
+## 🤝 Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
